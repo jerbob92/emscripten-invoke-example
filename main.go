@@ -25,7 +25,8 @@ func main() {
 	// Set context to one that has an experimental listener
 	ctx := context.WithValue(context.Background(), experimental.FunctionListenerFactoryKey{}, logging.NewLoggingListenerFactory(os.Stdout))
 
-	ctx = context.Background()
+	// Uncomment to disable tracing
+	//ctx = context.Background()
 	// Create a new WebAssembly Runtime.
 	r := wazero.NewRuntimeWithConfig(ctx, wazero.NewRuntimeConfigInterpreter())
 	defer r.Close(ctx) // This closes everything this Runtime created.
